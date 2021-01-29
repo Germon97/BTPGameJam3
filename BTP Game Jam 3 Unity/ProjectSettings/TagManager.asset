@@ -12,16 +12,16 @@ TagManager:
   - Water
   - UI
   - 
+  - Player
+  - Enemy
+  - PlayerHit
   - 
+  - EnemyBullet
+  - PlayerBullet
   - 
+  - Collectable
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Light
+    uniqueID: 1938004443
+    locked: 0
+  - name: Player
+    uniqueID: 868464063
     locked: 0

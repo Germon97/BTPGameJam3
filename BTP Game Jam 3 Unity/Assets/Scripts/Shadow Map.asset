@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f5e1c535a47ef40a6e71fe9ca19f65, type: 3}
+  m_Name: Shadow Map
+  m_EditorClassIdentifier: 
+  single: {fileID: 39076973277215250, guid: 5d9659ff651daa942a9e14cdd12d8683, type: 3}
+  horizontal: {fileID: 7376258785745735812, guid: 3bbc2cd42b428e04ab62e0fbc6809284, type: 3}
+  vertical: {fileID: 5906304735851217662, guid: 5d47e8128b06af646bc8d5a05ec16209, type: 3}
+  downSingle: {fileID: 7121918173961060596, guid: 07f89e957f57e9b42bf20362c5384215, type: 3}
+  upSingle: {fileID: 5360039030047213499, guid: f0bf44d1bf5db054ba95f75200b83bc9, type: 3}
+  leftSingle: {fileID: 6652739729037316123, guid: 986cc931187909647be6ec586d46ad4a, type: 3}
+  rightSingle: {fileID: 8019812759083544630, guid: 47b3695d63429e04e8e769badd3cbeb7, type: 3}
+  downRightCorner: {fileID: 44374711730896813, guid: 93da81c90afdb1a4abb11d25a9498f8f, type: 3}
+  downLeftCorner: {fileID: 6549510678054359120, guid: 703b97982d138124f9534072215edfa8, type: 3}
+  upRightCorner: {fileID: 6918043472314741622, guid: 04320dd845b09a44287d34789559a434, type: 3}
+  upLeftCorner: {fileID: 159310356744102492, guid: 9f7362c6793a4ee448e6254e02e4d308, type: 3}
+  cross: {fileID: 8367483227888724282, guid: 1ba59fab7d4c79548871465b3186d18d, type: 3}
