@@ -11,6 +11,12 @@ public class CollectAble : MonoBehaviour
 
     private void Start()
     {
+        Init(data);
+    }
+
+    public void Init(CollectableData data)
+    {
+        this.data = data;
         GetComponent<SpriteRenderer>().sprite = data.sprite;
         outline.GetComponent<SpriteRenderer>().sprite = data.sprite;
         outline.SetActive(false);

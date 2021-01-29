@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Image))]
-public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
+public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private CollectableData collectableData;
@@ -14,9 +14,23 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private bool over = false;
     private RectTransform rectT;
 
-    private void Start()
+    private InventoryManager inventoryManager;
+
+    private void Awake()
     {
         rectT = GetComponent<RectTransform>();
+        inventoryManager = GetComponentInParent<InventoryManager>();
+    }
+
+    public void Init(CollectableData colData)
+    {
+        GetComponent<Image>().sprite = collectableData.sprite;
+    }
+    public void Init(CollectableData colData, InventoryManager manager)
+    {
+        collectableData = colData;
+        GetComponent<Image>().sprite = colData.sprite;
+        inventoryManager = manager;
     }
 
     private void Update()
@@ -27,24 +41,16 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public CollectableData GetData()
     {
-        over = true;
+        return collectableData;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        over = false;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        dragged = false;
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (over)
-            dragged = true;
+        if (inventoryManager != null)
+        {
+            inventoryManager.NewSelectedItem(this);
+        }
     }
 }

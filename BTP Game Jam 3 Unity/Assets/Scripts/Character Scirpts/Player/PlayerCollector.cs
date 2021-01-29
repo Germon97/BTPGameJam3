@@ -21,6 +21,10 @@ public class PlayerCollector : MonoBehaviour
     private WeightBarScript weightBar;
     [SerializeField]
     private GoldScript goldScript;
+    [SerializeField]
+    private InventoryManager inventoryManager;
+    [SerializeField]
+    private GameObject collectAblePrefab;
 
     private void Start()
     {
@@ -59,10 +63,29 @@ public class PlayerCollector : MonoBehaviour
 
         weightBar.ChangeWeight(currentWeight);
         goldScript.UpdateGold(currentGold);
+
+        inventoryManager.Add(col.data);
+    }
+
+    public void RemoveCollectable(CollectableData col)
+    {
+        currentGold -= col.value;
+        currentWeight -= col.weight;
+
+        weightBar.ChangeWeight(currentWeight);
+        goldScript.UpdateGold(currentGold);
+
+        SpawnCollectable(col);
     }
 
     public float GetWeightSlowMultiplier()
     {
         return 1 - (currentWeight / maxWeight);
+    }
+
+    public void SpawnCollectable(CollectableData col)
+    {
+        GameObject collectable = Instantiate(collectAblePrefab, transform.position, Quaternion.identity);
+        collectable.GetComponent<CollectAble>().Init(col);
     }
 }

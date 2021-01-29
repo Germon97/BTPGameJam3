@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class CollectableData : ScriptableObject
 {
+    public string collectableName;
     public Sprite sprite;
     public int value;
     public float weight;

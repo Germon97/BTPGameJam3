@@ -44,6 +44,12 @@ TagManager:
   - name: Light
     uniqueID: 1938004443
     locked: 0
+  - name: Pillar
+    uniqueID: 2924635209
+    locked: 0
+  - name: CollectAble
+    uniqueID: 1186393745
+    locked: 0
   - name: Player
     uniqueID: 868464063
     locked: 0

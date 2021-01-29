@@ -90,7 +90,7 @@ public class SlimeEnemyScript : EnemyBehaviorScript
             
             if(currentSlideTime > timeBetweenSlides - 0.6f)
             {
-                spriteRenderer.sprite = anticipationSprite;
+                anim.SetWalking(false);
             }
 
             if(currentSlideTime > timeBetweenSlides)
@@ -98,7 +98,8 @@ public class SlimeEnemyScript : EnemyBehaviorScript
                 damageCollider.enabled = true;
 
                 slidingDirection = (PlayerMovement.playerPosition - transform.position).normalized;
-                spriteRenderer.sprite = normalSprite;
+
+                anim.SetWalking(true);
 
                 isSliding = true;
                 currentSlideTime = 0;

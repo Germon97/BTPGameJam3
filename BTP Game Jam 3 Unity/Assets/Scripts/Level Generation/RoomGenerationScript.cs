@@ -64,6 +64,13 @@ public class RoomGenerationScript : MonoBehaviour
     [SerializeField]
     private int straightTunnelMax;
 
+    [SerializeField]
+    private CollectableData[] collectables;
+    [SerializeField]
+    private GameObject collectPillar;
+
+    private float lootLimit = 6;
+
     [Range(0, 100)]
     [SerializeField]
     private float tunnelRate;
@@ -598,18 +605,50 @@ public class RoomGenerationScript : MonoBehaviour
 
     private void SpawnInLoot()
     {
+        int currentItems = 0;
+
         foreach (Room r in rooms)
         {
+            int perRoom = 0;
+
             if (r.GetRoomType() != RoomType.Normal)
                 continue;
 
             foreach (Vector2Int c in r.GetCoordinates())
             {
                 float ran = UnityEngine.Random.Range(0, 100);
-                if (ran <= 0.05f)
+
+                if (ran > 0.06f)
+                    continue;
+
+                if (currentItems >= lootLimit)
+                    return;
+                if (perRoom > 1)
+                    break;
+
+                bool nextToWall = false;
+
+                for (int xLocal = -1; xLocal < 2 && !nextToWall; xLocal++)
                 {
-                    Instantiate(coin, floorTileMap.CellToWorld(new Vector3Int(c.x, c.y, 0)), Quaternion.identity);
+                    for (int yLocal = -1; yLocal < 2 && !nextToWall; yLocal++)
+                    {
+                        if (currentMap[c.x + xLocal, c.y + yLocal] < 0)
+                        {
+                            nextToWall = true;
+                        }
+                    }
                 }
+
+                if (nextToWall)
+                    continue;
+
+                int ranCol = UnityEngine.Random.Range(0, collectables.Length);
+
+                perRoom++;
+                currentItems += 1;
+                GameObject pillar = Instantiate(collectPillar, floorTileMap.CellToWorld(new Vector3Int(c.x, c.y, 0)), Quaternion.identity);
+                pillar.GetComponent<CollectablePillar>().Init(collectables[ranCol]);
+                
             }
         }
     }
